@@ -90,9 +90,9 @@ func (g *Gpio) Out(value int) error {
 
 	var v []byte
 	if value == 0 {
-		v = []byte("0\n")
+		v = []byte("0")
 	} else {
-		v = []byte("1\n")
+		v = []byte("1")
 	}
 	err = ioutil.WriteFile(valueFile, []byte(v), 0644)
 	if err != nil {
