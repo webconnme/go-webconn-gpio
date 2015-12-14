@@ -2,6 +2,7 @@
  * The MIT License (MIT)
  *
  * Copyright (c) 2015 Edward Kim <edward@webconn.me>
+ * Copyright (c) 2015 Jane Lee <jane@webconn.me>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -48,14 +49,8 @@ type Gpio struct {
 }
 
 func (g *Gpio) Open() error {
-	driverFile := fmt.Sprintf("/sys/class/gpio/gpiochip%d", g.Pin)
-	_, err := os.Stat(driverFile)
 
-	if err != nil {
-		return err
-	}
-
-	err = ioutil.WriteFile("/sys/class/gpio/export", []byte(strconv.Itoa(g.Pin)), 0200)
+	err := ioutil.WriteFile("/sys/class/gpio/export", []byte(strconv.Itoa(g.Pin)), 0200)
 	if err != nil {
 		return err
 	}
